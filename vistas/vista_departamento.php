@@ -9,13 +9,14 @@ require "header.php"
         <!-- Default box -->
       <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Title</h3>
+            <h3 class="card-title">DEPARTAMENTOS</h3>
         </div>
         <div class="card-body">
           <!-- department table  -->
           <div class="panel-body" id="listadoRegistro">
               <table class="table table-striped table-bordered table-condensed table-over" id="tblistadoReg">
                   <thead>
+                      <th>Opciones</th>
                       <th>Descripción</th>
                       <th>Fecha de creación</th>
                       <th>Fecha de actualización</th>
@@ -24,6 +25,7 @@ require "header.php"
                   </thead>
                   <tbody>
                       <tr>
+                          <td>Opciones</td>
                           <td>Sistemas</td>
                           <td>27/04/2025</td>
                           <td>27/04/2025</td>
