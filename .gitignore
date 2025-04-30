@@ -1,3 +1,7 @@
 #este es un  comentario
+#Testt files
 /test_files/
+#Public directory
 /public/
+#Database constants
+/config/global.php

@@ -20,7 +20,7 @@ require "header.php"
                       <th>Descripción</th>
                       <th>Fecha de creación</th>
                       <th>Fecha de actualización</th>
-                      <th>Estatus</th>
+                      <th>Status</th>
                       <th>Empleado modifico</th>
                   </thead>
                   <tbody>
@@ -33,6 +33,16 @@ require "header.php"
                           <td>12</td>
                       </tr>
                   </tbody>
+                  <tfoot>
+                    <tr>
+                      <td>Opciones</td>
+                      <td>Descripción</td>
+                      <td>Fecha de creación</td>
+                      <td>Fecha de actualización</td>
+                      <td>Status</td>
+                      <td>Empleado modifico</td>
+                    </tr>
+                  </tfoot>
               </table>
           </div>
           <!-- /.department table  -->
