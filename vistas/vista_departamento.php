@@ -72,3 +72,4 @@ require "header.php"
 <?php
 require "footer.php"
 ?>
+<script type="text/javascript" src="../scripts/departamento.js"></script>
