@@ -26,17 +26,17 @@ Class Departamento{
         return ejecutarConsulta($sql);
     }
     public function mostrar($idDepartamento){
-        $sql = "SELECT idDepartamento, descripcion, activo, fechaCreacion, fechaActualizacion
+        $sql = "SELECT idDepartamento, descripcion, activo, fechaCreacion, fechaActualizacion,
         idEmpActualiza FROM departamentos WHERE idDepartamento = '$idDepartamento'; ";
         return ejecutarConsultaSimpleFila($sql);
     }
     public function listar(){
-        $sql = "SELECT idDepartamento, descripcion, activo, fechaCreacion, fechaActualizacion
+        $sql = "SELECT idDepartamento, descripcion, activo, fechaCreacion, fechaActualizacion,
         idEmpActualiza FROM departamentos;";
         return ejecutarConsulta($sql);
     }
     public function select_active(){
-        $sql = "SELECT idDepartamento, descripcion, activo, fechaCreacion, fechaActualizacion
+        $sql = "SELECT idDepartamento, descripcion, activo, fechaCreacion, fechaActualizacion,
         idEmpActualiza FROM departamentos WHERE activo = '1'; ";
         return ejecutarConsultaRetornaId($sql);
     }

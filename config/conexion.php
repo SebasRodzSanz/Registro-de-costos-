@@ -9,7 +9,7 @@ if(mysqli_connect_error()){
     printf("Error en la conexion a la base de datos: %s\n",mysqli_connect_error());
     exit();
 }
-echo "hola mundo: \n".$conex->host_info."\n adios";
+#echo "hola mundo: \n".$conex->host_info."\n adios";
 
 function ejecutarConsulta($sql){
     #Ejecuta una consulta sql que le pasemos

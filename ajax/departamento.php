@@ -4,30 +4,31 @@ require_once "../modelos/Departamento.php";
 $departamento = new Departamento();
 
 #Se reciben las instrucciones de javascript mediante el formulario
-//op = opción
+#op = opción
 switch ($_GET['op']){
     case 'listar':
         $rspta = $departamento->listar();
         $data = Array();
-        while ($renglon = $rspta->fetch_objetc()) {
+        while ($renglon = $rspta->fetch_object()) {
             $data[] = array(
-                "0" -> ($renglon->activo) ? "<button class='btn btn-warning' onclick='mostrar('{$renglon->idDepartamento}')> <i class='fa fa-pencil'></i> </button>".
-                "<button class='btn btn-danger' onclick='desactivar('{$renglon->idDepartamento}')'> <i class='fa fa-pencil'></i> </button>" :
-                "<button class='btn btn-warning' onclick='mostrar('{$renglon->idDepartamento}')'> <i class='fa fa-pencil'></i> </button>".
-                "<button class='btn btn-primary' onclick='activar('{$renglon->idDepartamento}')'> <i class='fa fa-pencil'></i> </button>",
-                "1" -> $renglon->descripcion,
-                "2" -> $renglon->fechaCreacion,
-                "3" -> ($renglon->activo)?"<span class='label bg-green'>Activados</span>" : "<span class='label bg-red'>Desactivado</span>"
+                "0"=>($renglon->activo)?"<button class='btn btn-warning' onclick='mostrar('{$renglon->idDepartamento}')'> <i class='far fa-edit'></i> </button>".
+                "<button class='btn btn-danger' onclick='desactivar('{$renglon->idDepartamento}')'> <i class='far fa-window-close'></i> </button>":
+                "<button class='btn btn-warning' onclick='mostrar('{$renglon->idDepartamento}')'> <i class='far fa-edit'></i> </button>".
+                "<button class='btn btn-primary' onclick='activar('{$renglon->idDepartamento}')'> <i class='far fa-check-square'></i> </button>",
+                "1" => $renglon->descripcion,
+                "2" => $renglon->fechaCreacion,
+                "3" => $renglon->fechaActualizacion,
+                "4" => ($renglon->activo)?"<span class='badge badge-success'>Activados</span>" : "<span class='badge badge-danger'>Desactivado</span>",
+                "5" => $renglon ->idEmpActualiza
             );
         }
         #Se guarda información para el datatables
         $results = array(
-            "sEcho" ->1,
-            "iTotalRecords" ->count($data);
-            "iTotalDisplayRecords" ->count($data),
-            "asData" -> $data;
-        );
-
+            "sEcho" =>1,
+            "iTotalRecords" =>count($data),
+            "iTotalDisplayRecords" =>count($data),
+            "aaData" => $data);
+        echo json_encode($results); #Imprime los datos en formato json para el metodo get
     break;
     case '':
         #code
@@ -36,6 +37,4 @@ switch ($_GET['op']){
         #code
     break;
 }
-
-
 ?>

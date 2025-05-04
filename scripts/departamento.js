@@ -22,7 +22,7 @@ function listar(){
                 'pdfHtml5'
             ], //Ponemos los botones que queremos para la aplicación
             "ajax":{
-                url: "../ajax/departamento.php?op=listar",//Establecemos la opción en donde ajax va a interactuar los datos
+                url: '../ajax/departamento.php?op=listar',//Establecemos la opción en donde ajax va a interactuar los datos
                 type:'get', //El tipo de metodo http (procesamiento)
                 dataType:'json', //Los datos recibidos en formato json,
                 error:(e)=>{

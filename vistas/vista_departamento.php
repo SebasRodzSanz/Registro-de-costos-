@@ -24,14 +24,6 @@ require "header.php"
                       <th>Empleado modifico</th>
                   </thead>
                   <tbody>
-                      <tr>
-                          <td>Opciones</td>
-                          <td>Sistemas</td>
-                          <td>27/04/2025</td>
-                          <td>27/04/2025</td>
-                          <td>1</td>
-                          <td>12</td>
-                      </tr>
                   </tbody>
                   <tfoot>
                     <tr>
