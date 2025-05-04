@@ -4,7 +4,8 @@ require_once "../modelos/Departamento.php";
 $departamento = new Departamento();
 
 #Se reciben las instrucciones de javascript mediante el formulario
-switch ($_GET['opcion']){
+//op = opción
+switch ($_GET['op']){
     case 'listar':
         $rspta = $departamento->listar();
         $data = Array();

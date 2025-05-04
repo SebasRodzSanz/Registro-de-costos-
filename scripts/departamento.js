@@ -21,8 +21,21 @@ function listar(){
                 'csvHtml5',
                 'pdfHtml5'
             ], //Ponemos los botones que queremos para la aplicación
+            "ajax":{
+                url: "../ajax/departamento.php?op=listar",//Establecemos la opción en donde ajax va a interactuar los datos
+                type:'get', //El tipo de metodo http (procesamiento)
+                dataType:'json', //Los datos recibidos en formato json,
+                error:(e)=>{
+                    //función que captura en el error
+                    console.log(e.responseText);
+                }
+            },
+            "destroy": true, //Cada vez que se ejecute se reinicializa el dataTable
+            "iDisplayLength":5, //Indica cuantos registros vamos a en el table 
+            "order":[[1,"desc"]] //Tipo de ordenamiento
         }
-    );//Funcion de jquery que trae el elememto dataTable
+    ).DataTable();//Funcion de jquery que trae el elememto dataTable
+    // .DataTable() inicializa el data table
 }
 //eventos
 init();//se llama a init
