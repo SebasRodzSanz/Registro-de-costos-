@@ -9,7 +9,12 @@ require "header.php"
         <!-- Default box -->
       <div class="card">
         <div class="card-header">
-            <h3 class="card-title">DEPARTAMENTOS</h3>
+            <h3 class="card-title">
+              DEPARTAMENTOS
+              <button class="btn btn-success" id="btnAdd" onclick="mostrarForm(true)">
+                <i class="fas fa-plus-circle">Agregar</i>
+              </button>
+            </h3>
         </div>
         <div class="card-body">
           <!-- department table  -->
@@ -47,8 +52,12 @@ require "header.php"
                     <input type="text" name="descripcion" id="descripcion" maxlength="256" placeholder="Nombre Departamento" required>
                   </div>
                   <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                    <button class="btn btn-primary" id="btn_guardar" type="submit">Guardar</button>
-                    <button class="btn btn-warning" id="btn_cancelar" type="clear">Cancelar</button>
+                    <button class="btn btn-primary" id="btn_guardar" type="submit">
+                      <i class="fas fa-save"></i> Guardar
+                    </button>
+                    <button class="btn btn-warning" id="btn_cancelar" type="clear" onclick="cancelarForm()">
+                      <i class="fas fa-arrow-circle-left"></i> Cancelar
+                    </button>
                   </div>
                 </form>
             </div>

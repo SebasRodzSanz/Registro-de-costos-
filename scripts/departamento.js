@@ -2,6 +2,7 @@
 var table;
 // funciones
 function init(){
+    mostrarForm(false);
     listar();
 }//Init permite inicializar los elementos del dataTable
 function listar(){
@@ -37,5 +38,29 @@ function listar(){
     ).DataTable();//Funcion de jquery que trae el elememto dataTable
     // .DataTable() inicializa el data table
 }
+
+//limpiar formulario
+const limpiar = ()=>{
+    $("#idDepartamento").val(""); //Selecciona con jquery el idDepartamento y pone el valor un string vacio
+    $("#descripcion").val(""); //Selecciona con jquery la descripción y pone el valor un string vacio
+};
+const mostrarForm = (flag)=>{
+    //flag indica si muestra el form
+    limpiar();
+    if(flag){
+        $("#listadoRegistro").hide();//Seleccionamos con jquery el listado de departamentos y lo ocultamos
+        $("#formInsertData").show();//Seleccionamos con jquery el formulario y lo mostramos
+        $("#btnAdd").hide(); //Seleccionamos con jquery el boton agregar y lo ocultamos
+        $("btn_guardar").prop("disable", false); //Seleccionamos con jquery el boton guardar y cambiamos la propiedad disable
+    }else{
+        $("#listadoRegistro").show();//Seleccionamos con jquery el listado de departamentos y lo mostramos
+        $("#formInsertData").hide();//Seleccionamos con jquery el formulario y lo ocultamos
+        $("#btnAdd").show(); //Seleccionamos con jquery el boton agregar y lo mostramos
+    }
+};
+const cancelarForm = ()=>{
+    limpiar();
+    mostrarForm(false)
+};
 //eventos
 init();//se llama a init
