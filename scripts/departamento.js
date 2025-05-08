@@ -7,6 +7,7 @@ function init(){
 }//Init permite inicializar los elementos del dataTable
 function listar(){
     //Pide al ajax el los datos del departamento
+    //llamado tipo jquery
     table = $('#tblistadoReg').dataTable(
         {
             "Processing":true, //Activa el procesamiento de la tabla
@@ -60,7 +61,7 @@ const mostrarForm = (flag)=>{
 };
 const cancelarForm = ()=>{
     limpiar();
-    mostrarForm(false)
+    mostrarForm(false);
 };
 //eventos
 init();//se llama a init

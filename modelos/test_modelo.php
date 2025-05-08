@@ -14,4 +14,6 @@ $departamento = new Departamento();
 
 $fechaActualizacion = date("Y-m-d H:i:s");
 $departamento->editar('6','Ventas internacionales', $fechaActualizacion,'3');
+
+#prueba del arreglo de lo departamentos en la bd
 ?>

@@ -10,6 +10,7 @@ switch ($_GET['op']){
         $rspta = $departamento->listar();
         $data = Array();
         while ($renglon = $rspta->fetch_object()) {
+        # los "0,1,2,3,..." son las columnas de la tabla que queremos
             $data[] = array(
                 "0"=>($renglon->activo)?"<button class='btn btn-warning' onclick='mostrar('{$renglon->idDepartamento}')'> <i class='far fa-edit'></i> </button>".
                 "<button class='btn btn-danger' onclick='desactivar('{$renglon->idDepartamento}')'> <i class='far fa-window-close'></i> </button>":
