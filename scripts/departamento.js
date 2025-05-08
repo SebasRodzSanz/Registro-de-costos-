@@ -4,6 +4,11 @@ var table;
 function init(){
     mostrarForm(false);
     listar();
+
+    $("#formIns").on("submit",(e)=>{
+        //Esta función atrapa el evento submit
+        guardarEditar(e);
+    });
 }//Init permite inicializar los elementos del dataTable
 function listar(){
     //Pide al ajax el los datos del departamento
@@ -63,5 +68,25 @@ const cancelarForm = ()=>{
     limpiar();
     mostrarForm(false);
 };
+const guardarEditar = (e)=>{
+    e.preventDefault();//Cancela los eventos del boton 
+    $("#btnAdd").prop("disable",true);//Seleccionamos con jquery el boton guardar y cambiamos la propiedad disable
+    let formData = new FormData($("#formIns")[0]);//Forma de acceder al formulario
+    $.ajax({
+        url:"../ajax/departamento.php?op=guardarEditar",
+        type:"POST", //Tipo de petición http
+        data: formData,//datos 
+        contentType:false, //no manda cabecero
+        processData: false,//no combierte objetos en string
+        
+        success: (respuesta)=>{
+            //funcion que se ejecuta en caso de que la petición sea correcta
+            alert(respuesta);
+            mostrarForm(false); //oculta el formulario
+            table.ajax.reload();//recargamos la tabla
+        }
+    });//Este ajax nos permite mandar los datos al formulario
+    limpiar();
+}
 //eventos
 init();//se llama a init

@@ -3,6 +3,13 @@ require_once "../modelos/Departamento.php";
 
 $departamento = new Departamento();
 
+#Verificamos si se envia idDepartemento y lo limpiamos. De lo contrario ponemos una cadena vacia
+$idDepartamento = isset($_POST['idDepartamento'])?limpiarCadenas($_POST['idDepartamento']):"";
+#Verificamos si se envia descripcion y lo limpiamos. De lo contrario ponemos una cadena vacia
+$descripcion = isset($_POST['descripcion'])?limpiarCadenas($_POST['descripcion']):"";
+$fechaActualizacion = date("Y-m-d H:i:s");#Generamos la fecha
+$idEmpActualiza = 1; #Cambiar por el usuario de la sesion cuando se implemente
+
 #Se reciben las instrucciones de javascript mediante el formulario
 #op = opción
 switch ($_GET['op']){
@@ -31,8 +38,21 @@ switch ($_GET['op']){
             "aaData" => $data);
         echo json_encode($results); #Imprime los datos en formato json para el metodo get
     break;
+    case 'guardarEditar':
+        if(empty($idDepartamento)){
+            #nuevo registro
+            $rpse = $departamento->insertar($descripcion);
+            $mensaje =($rpse != 0)?"Departamento registrado":"Error departamento no registrado";
+            echo $mensaje;
+        }else{
+            #editar registro
+            $rpse = $departamento->editar($idDepartamento,$descripcion,$fechaActualizacion,$idEmpActualiza);
+            $mensaje =($rpse != 0)?"Departamento registrado":"Error departamento no actualizado";
+            echo $mensaje;
+        }
+    break;
     case '':
-        #code
+        
     break;
     default:
         #code
