@@ -81,7 +81,12 @@ const guardarEditar = (e)=>{
         
         success: (respuesta)=>{
             //funcion que se ejecuta en caso de que la petición sea correcta
-            alert(respuesta);
+            let valida = respuesta.indexOf("rror");//busca la cadena en otra cadena
+            if(valida != -1){
+                toastr["error"](respuesta);//manda un modal de error con la respuesta
+            }else{
+                toastr["success"](respuesta);//manda un modal con la respuesta
+            }
             mostrarForm(false); //oculta el formulario
             table.ajax.reload();//recargamos la tabla
         }
