@@ -14,15 +14,15 @@ $idEmpActualiza = 1; #Cambiar por el usuario de la sesion cuando se implemente
 #op = opción
 switch ($_GET['op']){
     case 'listar':
-        $rspta = $departamento->listar();
+        $rpse = $departamento->listar();
         $data = Array();
-        while ($renglon = $rspta->fetch_object()) {
+        while ($renglon = $rpse->fetch_object()) {
         # los "0,1,2,3,..." son las columnas de la tabla que queremos
             $data[] = array(
-                "0"=>($renglon->activo)?"<button class='btn btn-warning' onclick='mostrar('{$renglon->idDepartamento}')'> <i class='far fa-edit'></i> </button>".
-                "<button class='btn btn-danger' onclick='desactivar('{$renglon->idDepartamento}')'> <i class='far fa-window-close'></i> </button>":
-                "<button class='btn btn-warning' onclick='mostrar('{$renglon->idDepartamento}')'> <i class='far fa-edit'></i> </button>".
-                "<button class='btn btn-primary' onclick='activar('{$renglon->idDepartamento}')'> <i class='far fa-check-square'></i> </button>",
+                "0"=>($renglon->activo)?"<button class='btn btn-warning' onclick='mostrar({$renglon->idDepartamento})'> <i class='far fa-edit'></i> </button>".
+                "<button class='btn btn-danger' onclick='desactivar({$renglon->idDepartamento})'> <i class='far fa-window-close'></i> </button>":
+                "<button class='btn btn-warning' onclick='mostrar({$renglon->idDepartamento})'> <i class='far fa-edit'></i> </button>".
+                "<button class='btn btn-primary' onclick='activar({$renglon->idDepartamento})'> <i class='far fa-check-square'></i> </button>",
                 "1" => $renglon->descripcion,
                 "2" => $renglon->fechaCreacion,
                 "3" => $renglon->fechaActualizacion,
@@ -47,12 +47,16 @@ switch ($_GET['op']){
         }else{
             #editar registro
             $rpse = $departamento->editar($idDepartamento,$descripcion,$fechaActualizacion,$idEmpActualiza);
-            $mensaje =($rpse != 0)?"Departamento registrado":"Error departamento no actualizado";
+            $mensaje =($rpse != 0)?"Departamento actualizado":"Error departamento no actualizado";
             echo $mensaje;
         }
     break;
+    case 'mostrar':
+        $rpse = $departamento->mostrar($idDepartamento);
+        echo json_encode($rpse);
+    break;
     case '':
-        
+        #code
     break;
     default:
         #code

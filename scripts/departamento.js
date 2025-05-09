@@ -93,5 +93,17 @@ const guardarEditar = (e)=>{
     });//Este ajax nos permite mandar los datos al formulario
     limpiar();
 }
+const mostrar = (idDepartamento)=>{
+    //$.post("url",{dato:dato},(dataResponse)=>{regreso}); es una funcion asincrona que simplifica la opción post de $.ajax
+    //es decir, tiene el mismo funcionamiento, pero esta es especial para post
+    $.post("../ajax/departamento.php?op=mostrar",{idDepartamento:idDepartamento},(data)=>{
+        //console.log(data);//String en formato json
+        data = JSON.parse(data);//transforma el json en objeto
+        //console.log(data);//objeto js
+        mostrarForm(true);
+        $('#idDepartamento').val(data.idDepartamento);//Selecciona con jquery el idDepartamento y pone el valor idDepartamento del data
+        $('#descripcion').val(data.descripcion);//Selecciona con jquery el descripcion y pone el valor descripcion del data
+    });
+}
 //eventos
 init();//se llama a init
