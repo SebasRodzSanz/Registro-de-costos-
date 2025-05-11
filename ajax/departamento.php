@@ -42,12 +42,12 @@ switch ($_GET['op']){
         if(empty($idDepartamento)){
             #nuevo registro
             $rpse = $departamento->insertar($descripcion);
-            $mensaje =($rpse != 0)?"Departamento registrado":"Error departamento no registrado";
+            $mensaje =($rpse != 0)?"Departamento registrado":"Error, departamento no registrado";
             echo $mensaje;
         }else{
             #editar registro
             $rpse = $departamento->editar($idDepartamento,$descripcion,$fechaActualizacion,$idEmpActualiza);
-            $mensaje =($rpse != 0)?"Departamento actualizado":"Error departamento no actualizado";
+            $mensaje =($rpse != 0)?"Departamento actualizado":"Error, departamento no actualizado";
             echo $mensaje;
         }
     break;
@@ -55,8 +55,15 @@ switch ($_GET['op']){
         $rpse = $departamento->mostrar($idDepartamento);
         echo json_encode($rpse);
     break;
-    case '':
-        #code
+    case 'desactivar':
+        $rpse = $departamento->desactivar($idDepartamento);
+        $mensaje = ($rpse)?"Departamento desactivado":"Error, el departamento no se pudo desactivar";
+        echo $mensaje;
+    break;
+    case 'activar':
+        $rpse = $departamento->activar($idDepartamento);
+        $mensaje = ($rpse)?"Departamento activado":"Error, el departamento no se pudo desactivar";
+        echo $mensaje;
     break;
     default:
         #code
