@@ -16,12 +16,12 @@ Class Departamento{
         return ejecutarConsulta($sql);
     }
     public function activar($idDepartamento){
-        $sql = "UPDATE departamentos2 SET activo ='1' 
+        $sql = "UPDATE departamentos SET activo ='1' 
         WHERE idDepartamento = '$idDepartamento'  ;";
         return ejecutarConsulta($sql);
     }
     public function desactivar($idDepartamento){
-        $sql = "UPDATE departamentos2 SET activo ='0' 
+        $sql = "UPDATE departamentos SET activo ='0' 
         WHERE idDepartamento = '$idDepartamento'  ;";
         return ejecutarConsulta($sql);
     }
