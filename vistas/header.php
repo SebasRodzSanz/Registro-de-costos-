@@ -131,13 +131,19 @@
               <li class="nav-item">
                 <a href="vista_departamento.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Departamentos</p>
+                  <p>Catalogo Departamentos</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../../index3.html" class="nav-link">
+                <a href="vista_categoria.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v3</p>
+                  <p>Catalogo Categorias</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="vista_categoria.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Catalogo Empleados</p>
                 </a>
               </li>
             </ul>
