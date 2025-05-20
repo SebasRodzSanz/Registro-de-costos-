@@ -1,6 +1,7 @@
 #este es un  comentario
 #Test files
 /test_files/
+/modelos/test_modelo.php
 #Public directory
 /public/
 #Database constants
