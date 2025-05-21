@@ -42,4 +42,22 @@ function limpiarCadenas($str){
     #los convierte a caracteres de texto para que el navegador no lea el html incrustado
     #previene los ataques de XSS(Cross-Site Scrpting)
 }
+
+if(!function_exists('encryption')){
+    function encryption($string){
+        $output = FALSE;
+        $key = hash('sha256',SECRET_KEY);
+        $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length(METHOD));
+        $output = openssl_encrypt($string,METHOD,$key,0,$iv);
+        $output = base64_encode($output.'::'.$iv);
+        return  $output;
+    }
+    function decryption($string){
+        $key = hash('sha256',SECRET_KEY);
+        list($string,$iv) = array_pad(explode('::',base64_decode($string),2),2,null);
+        $output = openssl_decrypt($string,METHOD,$key,0,$iv);
+        return $output;
+    }
+}
+
 ?>

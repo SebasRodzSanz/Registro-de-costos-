@@ -2,7 +2,7 @@
 #Test files
 /test_files/
 /modelos/test_modelo.php
+/vistas/encriptado.php
 #Public directory
 /public/
 #Database constants
-/config/global.php

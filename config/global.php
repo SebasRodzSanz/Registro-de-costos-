@@ -9,4 +9,8 @@ define("DB_USERNAME","root");
 define("DB_PASSWORD","");
 # codificación de los caracteres 
 define("DB_ENCODE","utf8");
+#metodo de encriptado
+define("METHOD","AES-256-CBC");
+#llave de metodo de encriptado
+define("SECRET_KEY", "#SDAWi2025-ii@costos");
 ?>
