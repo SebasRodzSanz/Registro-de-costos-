@@ -37,7 +37,7 @@ Class Categoria{
     }
     public function select_active(){
         $sql = "SELECT idCategoria, descripcion, activo, fechaCreacion, fechaActualizacion,
-        idEmpActualiza FROM categorias WHERE activo = '1'; ";
+        idEmpActualiza FROM categorias WHERE activo = 1; ";
         return ejecutarConsultaRetornaId($sql);
     }
 }

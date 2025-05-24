@@ -5,7 +5,7 @@ Class Empleado{
     public function __construct() {}
     public function insertar($nombre,$apellido_paterno,$apellido_materno,$email,$fecha_entrada,$fecha_baja,$idDepartamento,$idJefe,$esJefe,$usuario,$pwd,$foto,$idEmpActualiza) {
         $sql = "INSERT INTO empleados (nombre,apellido_paterno,apellido_materno,email,fecha_entrada,fecha_baja,idDepartamento,idJefe,esJefe,usuario,pwd,foto,idEmpActualiza) 
-        VALUES ('{$nombre}','{$apellido_paterno}','{$apellido_materno}','{$email}','{$fecha_entrada}','{$fecha_baja}',{$idDepartamento}, {$idJefe},{$esJefe},'{$usuario}','{$pwd}','{$foto}',{$idEmpActualiza});";
+        VALUES ('{$nombre}','{$apellido_paterno}','{$apellido_materno}','{$email}','{$fecha_entrada}','{$fecha_baja}',{$idDepartamento},{$idJefe},{$esJefe},'{$usuario}','{$pwd}','{$foto}',{$idEmpActualiza});";
         return ejecutarConsultaRetornaId($sql);
     }
     public function editar($idEmpleado,$nombre,$apellido_paterno,$apellido_materno,$email,$fecha_entrada,$fecha_baja,$idDepartamento,$idJefe,$esJefe,$usuario,$pwd,$foto,$fechaActualizacion,$idEmpActualiza){
@@ -13,7 +13,7 @@ Class Empleado{
         nombre = '{$nombre}',apellido_paterno='{$apellido_paterno}',apellido_paterno = '{$apellido_materno}',email = '{$email}',fecha_entrada ='{$fecha_entrada}',fecha_baja ='{$fecha_baja}',
         idDepartamento = {$idDepartamento}, idJefe = {$idJefe}, esJefe = {$esJefe}, usuario = '{$usuario}', pwd = '{$pwd}', foto = '{$foto}',
         fechaActualizacion = '{$fechaActualizacion}',idEmpActualiza = {$idEmpActualiza}
-        WHERE  = idEmpleado = {$idEmpleado};";
+        WHERE idEmpleado = {$idEmpleado};";
         return ejecutarConsulta($sql);
     }
     public function activar($idEmpleado){
@@ -43,7 +43,7 @@ Class Empleado{
     public function select_active(){
         $sql = "SELECT idEmpleado,nombre,apellido_paterno,apellido_materno,email,fecha_entrada,fecha_baja,
         idDepartamento,idJefe,esJefe,usuario,pwd,foto
-        FROM empleados WHERE idEmpleado = {$idEmpleado} AND activo = '1' ;";
+        FROM empleados WHERE activo = 1 ;";
         return ejecutarConsultaRetornaId($sql);
     }
 }

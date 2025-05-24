@@ -36,5 +36,6 @@
 <script src="../public/plugins/pdfmake/pdfmake.min.js"></script>
 <script src="../public/plugins/pdfmake/vfs_fonts.js"></script>
 <script src="../public/plugins/toastr/toastr.min.js"></script>
+<script src="../public/plugins/bootstrap-select-dist/js/bootstrap-select.min.js"></script>
 </body>
 </html>

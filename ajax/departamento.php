@@ -65,6 +65,12 @@ switch ($_GET['op']){
         $mensaje = ($rpse)?"Departamento activado":"Error, el departamento no se pudo activar";
         echo $mensaje;
     break;
+    case 'select':
+        $rsp = $departamento->select_active();
+        while($row = $rsp->fetch_object()){
+            echo "<option value='{$row->idDepartamento}' >{$row->descripcion}</option>";
+        }
+    break;
     default:
         #code
     break;

@@ -86,11 +86,11 @@ require "header.php"
                 </div>
                 <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
                     <label for="idDepartamento">Departameto</label>
-                    <select name="idDepartamento" class="form-control" id="idDepartamento" required></select>
+                    <select name="idDepartamento" class="form-control selectpicker" data-live-search="true" id="idDepartamento" required></select>
                 </div>
                 <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
                     <label for="idJefe">Jefe</label>
-                    <select name="idJefe" class="form-control" id="idJefe" required></select>
+                    <select name="idJefe" class="form-control selectpicker" data-live-search="true" id="idJefe" required></select>
                 </div>
                 <div class="form-check col-xl-6 col-lg-6 col-md-6 col-sm-12">
                     <label for="esJefe">¿Es jefe?</label>

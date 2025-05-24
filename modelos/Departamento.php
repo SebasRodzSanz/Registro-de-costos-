@@ -37,8 +37,8 @@ Class Departamento{
     }
     public function select_active(){
         $sql = "SELECT idDepartamento, descripcion, activo, fechaCreacion, fechaActualizacion,
-        idEmpActualiza FROM departamentos WHERE activo = '1'; ";
-        return ejecutarConsultaRetornaId($sql);
+        idEmpActualiza FROM departamentos WHERE activo = 1; ";
+        return ejecutarConsulta($sql);
     }
 }
 ?>

@@ -25,6 +25,7 @@
   <link rel="stylesheet" href="../public/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <link rel="stylesheet" href="../public/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="../public/plugins/toastr/toastr.min.css">
+  <link rel="stylesheet" href="../public/plugins/bootstrap-select-dist/css/bootstrap-select.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -141,7 +142,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="vista_categoria.php" class="nav-link">
+                <a href="vista_empleado.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Catalogo Empleados</p>
                 </a>
