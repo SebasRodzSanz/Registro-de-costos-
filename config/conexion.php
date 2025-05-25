@@ -60,4 +60,15 @@ if(!function_exists('encryption')){
     }
 }
 
+#metodo para hacer debug
+function write_log($message){
+    $log_filename = "gastos_log_debug"; #crea el nombre de la carpeta
+    if(!file_exists($log_filename)){
+        mkdir($log_filename,0777,true);#crea la carpeta
+    }
+    $log_file_data = $log_filename.'/debug.log';#archivo
+    #mandamos a salida
+    file_put_contents($log_file_data,"============================= ".date("Y-m-d H:i:s")."================"."\n",FILE_APPEND);
+    file_put_contents($log_file_data,$message."\n",FILE_APPEND);
+}
 ?>

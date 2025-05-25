@@ -65,7 +65,7 @@ require "header.php"
                 </div>
                 <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
                     <label for="apellido_m">Apellido materno</label>
-                    <input type="text" class="form-control" name="apellido_m" id="apellido_m" maxlength="256" placeholder="Apellido materno" required>
+                    <input type="text" class="form-control" name="apellido_m" id="apellido_m" maxlength="256" placeholder="Apellido materno" >
                 </div>
                 <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
                     <label for="email">Email</label> 
@@ -82,7 +82,7 @@ require "header.php"
                 </div>
                 <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
                     <label for="fecha_baja">Fecha de baja</label>
-                    <input type="date" class="form-control" name="fecha_baja" id="fecha_baja" maxlength="256" placeholder="fecha" required>
+                    <input type="date" class="form-control" name="fecha_baja" id="fecha_baja" maxlength="256" placeholder="fecha" >
                 </div>
                 <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
                     <label for="idDepartamento">Departameto</label>
@@ -90,12 +90,12 @@ require "header.php"
                 </div>
                 <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
                     <label for="idJefe">Jefe</label>
-                    <select name="idJefe" class="form-control selectpicker" data-live-search="true" id="idJefe" required></select>
+                    <select name="idJefe" class="form-control selectpicker" data-live-search="true" id="idJefe" ></select>
                 </div>
                 <div class="form-check col-xl-6 col-lg-6 col-md-6 col-sm-12">
                     <label for="esJefe">¿Es jefe?</label>
                     <div class="custom-control custom-switch">
-                        <input type="checkbox" class="custom-control-input" name="esJefe" id="esJefe" required>
+                        <input type="checkbox" class="custom-control-input" name="esJefe" id="esJefe" >
                         <label for="esJefe" class="custom-control-label">SI</label>
                     </div>
                 </div>
@@ -110,7 +110,7 @@ require "header.php"
                 <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
                     <label>Foto del empleado</label>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" name="foto" id="foto" required>
+                        <input type="file" class="custom-file-input" name="foto" id="foto" >
                         <label for="foto" class="custom-file-label">Foto</label>
                     </div>
                 </div>

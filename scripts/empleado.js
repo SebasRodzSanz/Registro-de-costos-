@@ -54,5 +54,30 @@ const cancelarForm = ()=>{
     mostrarForm(false);
 };
 
+const guardarEditar = (e)=>{
+    e.preventDefault();//Cancela los eventos del boton 
+    $("#btnAdd").prop("disable",true);//Seleccionamos con jquery el boton guardar y cambiamos la propiedad disable
+    let formData = new FormData($("#formIns")[0]);//Forma de acceder al formulario
+    $.ajax({
+        url:"../ajax/empleado.php?op=guardarEditar",
+        type:"POST", //Tipo de petición http
+        data: formData,//datos 
+        contentType:false, //no manda cabecero
+        processData: false,//no combierte objetos en string
+        
+        success: (respuesta)=>{
+            //funcion que se ejecuta en caso de que la petición sea correcta
+            let valida = respuesta.indexOf("rror,");//busca la cadena en otra cadena
+            if(valida != -1){
+                toastr["error"](respuesta);//manda un modal de error con la respuesta
+            }else{
+                toastr["success"](respuesta);//manda un modal con la respuesta
+            }
+            // mostrarForm(false); //oculta el formulario
+            // table.ajax.reload();//recargamos la tabla
+        }
+    });//Este ajax nos permite mandar los datos al formulario
+    limpiar();
+}
 
 init();

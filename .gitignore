@@ -6,3 +6,7 @@
 #Public directory
 /public/
 #Database constants
+#files 
+/files/
+#dubug log
+/ajax/gastos_log_debug/
