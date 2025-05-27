@@ -68,7 +68,7 @@ switch ($_GET['op']){
     case 'select':
         $rsp = $departamento->select_active();
         while($row = $rsp->fetch_object()){
-            echo "<option value='{$row->idDepartamento}' >{$row->descripcion}</option>";
+            echo "<option value='{$row->idDepartamento}'>{$row->descripcion}</option>";
         }
     break;
     default:

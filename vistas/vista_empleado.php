@@ -26,7 +26,7 @@ require "header.php"
                     <th>Primer apellido</th>
                     <th>Departamento</th>
                     <th>Jefe</th>
-                    <th>Fechaa de ingreso</th>
+                    <th>Fecha de ingreso</th>
                     <th>Fecha de creación</th>
                     <th>Fecha de actualización</th>
                     <th>Status</th>

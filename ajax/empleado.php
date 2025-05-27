@@ -31,20 +31,24 @@ write_log(json_encode($_FILES));#mandamos a debug el arreglo files de los archiv
 #op = opción
 switch ($_GET['op']){
     case 'listar':
-        $rpse = $categoria->listar();
+        $rpse = $empleado->listar();
         $data = Array();
         while ($renglon = $rpse->fetch_object()) {
         # los "0,1,2,3,..." son las columnas de la tabla que queremos
             $data[] = array(
-                "0"=>($renglon->activo)?"<button class='btn btn-warning' onclick='mostrar({$renglon->idCategoria})'> <i class='far fa-edit'></i> </button>".
-                "<button class='btn btn-danger' onclick='desactivar({$renglon->idCategoria})'> <i class='far fa-window-close'></i> </button>":
-                "<button class='btn btn-warning' onclick='mostrar({$renglon->idCategoria})'> <i class='far fa-edit'></i> </button>".
-                "<button class='btn btn-primary' onclick='activar({$renglon->idCategoria})'> <i class='far fa-check-square'></i> </button>",
-                "1" => $renglon->descripcion,
-                "2" => $renglon->fechaCreacion,
-                "3" => $renglon->fechaActualizacion,
-                "4" => ($renglon->activo)?"<span class='badge badge-success'>Activados</span>" : "<span class='badge badge-danger'>Desactivado</span>",
-                "5" => $renglon ->idEmpActualiza
+                "0"=>($renglon->activo)?"<button class='btn btn-warning' onclick='mostrar({$renglon->idEmpleado})'> <i class='far fa-edit'></i> </button>".
+                "<button class='btn btn-danger' onclick='desactivar({$renglon->idEmpleado})'> <i class='far fa-window-close'></i> </button>":
+                "<button class='btn btn-warning' onclick='mostrar({$renglon->idEmpleado})'> <i class='far fa-edit'></i> </button>".
+                "<button class='btn btn-primary' onclick='activar({$renglon->idEmpleado})'> <i class='far fa-check-square'></i> </button>",
+                "1" => decryption($renglon->nombre),
+                "2" => decryption($renglon->apellido_paterno),
+                "3" => $renglon->descripcion,
+                "4" => decryption($renglon->jefeNombre)." ".decryption($renglon->jefePrimerApellido),
+                "5" => $renglon->fecha_entrada,
+                "6" => $renglon->fechaCreacion,
+                "7" => $renglon->fechaActualizacion,
+                "8" => ($renglon->activo)?"<span class='badge badge-success'>Activados</span>" : "<span class='badge badge-danger'>Desactivado</span>",
+                "9" => decryption($renglon ->empActualizaNombre)." ".decryption($renglon->empActualizaPrimerApellido)
             );
         }
         #Se guarda información para el datatables
@@ -77,33 +81,73 @@ switch ($_GET['op']){
             $apellido_p = encryption($apellido_p);
             $apellido_m = encryption($apellido_m);
             $esJefe =(strlen($esJefe)<1)?0:1;
+            $pwd = set_pass($pwd);
 
             $rpse = $empleado->insertar($nombre,$apellido_p,$apellido_m,$email,$fecha_entrada,$fecha_baja,$idDepartamento,$idJefe,$esJefe,$usuario,$pwd,$imagen,$idEmpActualiza);
             $mensaje =($rpse != 0)?"Empleado registrado":"Error, empleado no registrada";
             echo $mensaje;
         }else{
             #editar registro
-            // $rpse = $categoria->editar($idCategoria,$descripcion,$fechaActualizacion,$idEmpActualiza);
-            // $mensaje =($rpse != 0)?"Categoria actualizada":"Error, categoria no actualizada";
-            // echo $mensaje;
+            $hashValidado = hash("SHA256","Contraseña no actualizada");
+            write_log("Ajax empleado-editar: valor de hashValidado: {$hashValidado} || pwd = {$pwd}");
+            if($pwd == $hashValidado){
+                write_log("Ajax empleado-editar: iguales valor de hashValidado: {$hashValidado} || pwd = {$pwd}");
+                $pwd = "";
+            }else{
+                write_log("Ajax empleado-editar: diferentes valor de hashValidado: {$hashValidado} || pwd = {$pwd}");
+                $pwd = set_pass($pwd);
+            }
+
+            $nombre = encryption($nombre);
+            $apellido_p = encryption($apellido_p);
+            $apellido_m = encryption($apellido_m);
+            $esJefe =(strlen($esJefe)<1)?0:1;
+
+            $rpse = $empleado -> editar($idEmpleado,$nombre,$apellido_p,$apellido_m,$email,$fecha_entrada,$fecha_baja,$idDepartamento,$idJefe,$esJefe,$usuario,$pwd,$imagen,$fechaActualizacion,$idEmpActualiza);
+            $mensaje =($rpse != 0)?"Empleado actualizado":"Error, empleado no actualizado";
+            echo $mensaje;
         }
     break;
-    // case 'mostrar':
-    //     $rpse = $categoria->mostrar($idCategoria);
-    //     echo json_encode($rpse);
-    // break;
-    // case 'desactivar':
-    //     $rpse = $categoria->desactivar($idCategoria);
-    //     $mensaje = ($rpse)?"Categoria desactivada":"Error, la categoria no se pudo desactivar";
-    //     echo $mensaje;
-    // break;
-    // case 'activar':
-    //     $rpse = $categoria->activar($idCategoria);
-    //     $mensaje = ($rpse)?"Categoria activada":"Error, la categoria no se pudo activar";
-    //     echo $mensaje;
-    // break;
-    // default:
-    //     #code
-    // break;
+    case 'selectJefe':
+        $rsp = $empleado->selectJefe();
+        while($row = $rsp->fetch_object()){
+            $name = decryption($row->nombre);
+            $f_name = decryption($row->apellido_paterno);
+            echo "<option value='{$row->idEmpleado}'>{$name} {$f_name}</option>";
+        }
+    break;
+    case 'mostrar':
+        $rpse = $empleado->mostrar($idEmpleado);
+        write_log("Ajax empleado caso mostrar");
+        write_log(json_encode($rpse));
+
+        $rpse["nombre"] = decryption($rpse["nombre"]);
+        $rpse["apellido_paterno"] = decryption($rpse["apellido_paterno"]);
+        $rpse["apellido_materno"] = decryption($rpse["apellido_materno"]);
+        
+        #verificamos el formato correcto de la fecha para el input date
+        if(strlen(strtotime($rpse["fecha_entrada"])) > 1){
+            $rpse["fecha_entrada"] = date("Y-m-d",strtotime($rpse["fecha_entrada"]));
+        }
+        if(strlen(strtotime($rpse["fecha_baja"])) > 1){
+            $rpse["fecha_baja"] = date("Y-m-d",strtotime($rpse["fecha_baja"]));
+        }
+        $rpse["pwd"] = hash("SHA256","Contraseña no actualizada");
+
+        echo json_encode($rpse);
+    break;
+    case 'desactivar':
+        $rpse = $empleado->desactivar($idEmpleado ,$fechaActualizacion, $idEmpActualiza);
+        $mensaje = ($rpse)?"Empleado dado de baja":"Error, el empleado no se dar de baja al empleado";
+        echo $mensaje;
+    break;
+    case 'activar':
+        $rpse = $empleado->activar($idEmpleado ,$fechaActualizacion, $idEmpActualiza);
+        $mensaje = ($rpse)?"Empleado reactivado":"Error, el empleado no se pudo reactivar";
+        echo $mensaje;
+    break;
+    default:
+        #code
+    break;
 }
 ?>

@@ -71,4 +71,18 @@ function write_log($message){
     file_put_contents($log_file_data,"============================= ".date("Y-m-d H:i:s")."================"."\n",FILE_APPEND);
     file_put_contents($log_file_data,$message."\n",FILE_APPEND);
 }
+#metodo para encriptar la contraseña
+function set_pass($contra){
+    $pwd_peppered = hash_hmac("sha256",$contra,PEPPER);
+    $opciones = [
+        'cost' => 11
+    ];
+    $pwd_hashed = password_hash($pwd_peppered,PASSWORD_BCRYPT,$opciones);
+    return $pwd_hashed;
+}
+function val_pass($contra,$dbcontra){
+    $pwd_peppered = hash_hmac("sha256",$contra,PEPPER); #cifra la contraseña
+    $verificacion = password_verify($pwd_peppered,$dbcontra);#verifica la contraseña
+    return $verificacion;
+}
 ?>

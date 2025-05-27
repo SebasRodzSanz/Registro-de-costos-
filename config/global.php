@@ -13,4 +13,6 @@ define("DB_ENCODE","utf8");
 define("METHOD","AES-256-CBC");
 #llave de metodo de encriptado
 define("SECRET_KEY", "#SDAWi2025-ii@costos");
+#constante para encriptado hash
+define("PEPPER", "#SDAWi2025-ii@pepper");
 ?>
