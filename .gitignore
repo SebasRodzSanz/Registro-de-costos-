@@ -10,3 +10,6 @@
 /files/
 #dubug log
 /ajax/gastos_log_debug/
+#conexion
+/config/conexion.php
+/config/global.php

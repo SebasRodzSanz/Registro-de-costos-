@@ -45,6 +45,4 @@ if($res != 0){
 }else{
     echo "algo mal";
 }
-
-#CACHE DEL NAVEGADOR DE MIGUEL
 ?>
